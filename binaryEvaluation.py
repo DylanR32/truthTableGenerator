@@ -32,6 +32,11 @@ class Calculation(object):
         else:
             return 0
     
+
+    def negation(p):
+        p = int(p)
+        p = (p+1) % 2
+        return p
     # iterate through postFix, calling appropriate evaluation as needed
     def calculate(self, postFix):
         operatorSet = {"^", "v", ">", "!"}
@@ -39,11 +44,16 @@ class Calculation(object):
             "^": self.binaryAnd,
             "v": self.binaryOr,
             ">": self.binaryImp,
+            "!": self.negation
         }
         stack = []
         for char in postFix:
             if char not in operatorSet:
                 stack.append(char)
+            elif char == "!":
+                right = stack.pop()
+                result = calcDict[char](right)
+                stack.append(result)
             else:    # should only evaluate if the current character is an operator
                 right = stack.pop()
                 left = stack.pop()
