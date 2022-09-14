@@ -6,11 +6,9 @@ class Input(object):
     def getVarList(self, input):
         allOperators = {"^", "v", ">", "!", "(", ")"}
         varList = []
-        # varList = [char for char in input if char not in allOperators and char not in varList]
         for char in input:
             if char not in allOperators and char not in varList:
                     varList.append(char)
-        
         return varList
 
     # reduce input down to single character operators
