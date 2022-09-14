@@ -3,9 +3,14 @@ class Input(object):
         object.__init__(self)
     
     # return set of variables
-    def getVarList(self, postFix):
+    def getVarList(self, input):
         allOperators = {"^", "v", ">", "!", "(", ")"}
-        varList = {char for char in postFix if char not in allOperators}
+        varList = []
+        # varList = [char for char in input if char not in allOperators and char not in varList]
+        for char in input:
+            if char not in allOperators and char not in varList:
+                    varList.append(char)
+        
         return varList
 
     # reduce input down to single character operators

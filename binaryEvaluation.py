@@ -54,6 +54,7 @@ class Calculation(object):
                 right = stack.pop()
                 result = calcDict[char](right)
                 stack.append(result)
+
             else:    # should only evaluate if the current character is an operator
                 right = stack.pop()
                 left = stack.pop()
